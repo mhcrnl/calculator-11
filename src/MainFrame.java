@@ -367,7 +367,8 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn0ActionPerformed
 
     private void btnCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCActionPerformed
-        // TODO add your handling code here:
+        initMyFields();
+        textFieldDisplay.setText("");
     }//GEN-LAST:event_btnCActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
