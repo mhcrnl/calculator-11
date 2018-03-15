@@ -35,10 +35,44 @@ public class MainFrame extends javax.swing.JFrame {
         
     }
     
+    private void eraseIfNeededAndWriteNumber(String numberStr) {
+        if (erase) {
+            textFieldDisplay.setText("");
+            erase = false;
+        }
+        textFieldDisplay.setText(textFieldDisplay.getText() + 
+                                    numberStr);
+    }
+    
     public char getDedicimalSeparator() {
         DecimalFormatSymbols dfs = new DecimalFormatSymbols(
                                     Locale.getDefault() );
         return dfs.getDecimalSeparator();
+    }
+    
+    private void calculateResult() {
+        operand = Double.parseDouble(textFieldDisplay.getText());
+        switch(operator) {
+            case ADD:
+                accumulator += operand;
+                break;
+            case SUBTRACT:
+                accumulator -= operand;
+                break;
+            case MULTIPLY:
+                accumulator *= operand;
+                break;
+            case DIVIDE:
+                accumulator /= operand;
+                break;
+            case NONE:
+                accumulator = operand;
+                break;
+        }
+    }
+    
+    private void displayResult() {
+        textFieldDisplay.setText("" + accumulator);
     }
 
     /**
@@ -289,39 +323,39 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
-        textFieldDisplay.setText(textFieldDisplay.getText() + "2");
+        eraseIfNeededAndWriteNumber("2");
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
-        textFieldDisplay.setText(textFieldDisplay.getText() + "1");
+        eraseIfNeededAndWriteNumber("1");
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
-        textFieldDisplay.setText(textFieldDisplay.getText() + "3");
+        eraseIfNeededAndWriteNumber("3");
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
-        textFieldDisplay.setText(textFieldDisplay.getText() + "5");
+        eraseIfNeededAndWriteNumber("5");
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
-        textFieldDisplay.setText(textFieldDisplay.getText() + "7");
+        eraseIfNeededAndWriteNumber("7");
     }//GEN-LAST:event_btn7ActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
-        textFieldDisplay.setText(textFieldDisplay.getText() + "6");
+        eraseIfNeededAndWriteNumber("6");
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
-        textFieldDisplay.setText(textFieldDisplay.getText() + "8");
+        eraseIfNeededAndWriteNumber("8");
     }//GEN-LAST:event_btn8ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
-        textFieldDisplay.setText(textFieldDisplay.getText() + "4");
+        eraseIfNeededAndWriteNumber("4");
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
-        textFieldDisplay.setText(textFieldDisplay.getText() + "9");
+        eraseIfNeededAndWriteNumber("9");
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btnCommaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCommaActionPerformed
@@ -329,7 +363,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCommaActionPerformed
 
     private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
-        textFieldDisplay.setText(textFieldDisplay.getText() + "0");
+        eraseIfNeededAndWriteNumber("0");
     }//GEN-LAST:event_btn0ActionPerformed
 
     private void btnCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCActionPerformed
@@ -337,9 +371,13 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
+        erase = true;
+        calculateResult();
+        displayResult();
+        operator = OperatorType.ADD;
     }//GEN-LAST:event_btnAddActionPerformed
 
+    
     private void btnSubtractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubtractActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSubtractActionPerformed
