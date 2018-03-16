@@ -52,7 +52,9 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     private void calculateResult() {
-        operand = Double.parseDouble(textFieldDisplay.getText());
+        String s = textFieldDisplay.getText();
+        s = s.replaceAll(""+decimalSeparator, ".");
+        operand = Double.parseDouble(s);
         switch(operator) {
             case ADD:
                 accumulator += operand;
@@ -78,6 +80,7 @@ public class MainFrame extends javax.swing.JFrame {
             s = s.replaceAll("0+$", "");
             s = s.replaceAll("\\.$", "");
         }
+        s = s.replaceAll("\\.", ""+decimalSeparator);
         textFieldDisplay.setText(s);
         //BigDecimal number = new BigDecimal(accumulator);
         //textFieldDisplay.setText(number.stripTrailingZeros().toPlainString());
@@ -367,7 +370,10 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btnCommaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCommaActionPerformed
-        // TODO add your handling code here:
+        String s = textFieldDisplay.getText();
+        if ( ! s.contains("" + decimalSeparator)) {
+            eraseIfNeededAndWriteNumber("" + decimalSeparator);
+        }
     }//GEN-LAST:event_btnCommaActionPerformed
 
     private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
