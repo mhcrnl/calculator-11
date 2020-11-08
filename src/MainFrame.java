@@ -119,6 +119,7 @@ public class MainFrame extends javax.swing.JFrame {
         textFieldDisplay = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Mhcrnl Calculator");
 
         btn2.setText("2");
         btn2.addActionListener(new java.awt.event.ActionListener() {
